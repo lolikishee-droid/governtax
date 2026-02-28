@@ -26,11 +26,23 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        /* Blinking Animation */
+        /* Blinking Animations */
         @keyframes blink {
             0% { opacity: 1; }
             50% { opacity: 0.3; }
             100% { opacity: 1; }
+        }
+
+        @keyframes blink-blue {
+            0% { color: #0000ff; opacity: 1; }
+            50% { color: #0000ff; opacity: 0.3; }
+            100% { color: #0000ff; opacity: 1; }
+        }
+
+        @keyframes blink-green {
+            0% { color: #008000; opacity: 1; }
+            50% { color: #008000; opacity: 0.3; }
+            100% { color: #008000; opacity: 1; }
         }
 
         .country-badge { 
@@ -93,14 +105,28 @@
         .receipt-center { text-align: center; font-weight: bold; letter-spacing: 1px; }
         .red-status { color: #d32f2f; font-weight: bold; text-align: center; display: block; margin-top: 15px; border: 1px solid #d32f2f; padding: 5px; }
 
-        /* Verified Title Style */
-        .id-verified-title {
-            font-weight: 900;
-            font-size: 14px;
-            color: #1a2a44;
+        /* Verified Title Style - Updated */
+        .id-verified-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             margin-top: 20px;
+        }
+
+        .id-verified-title {
+            font-weight: bold;
+            font-size: 14px;
+            color: #0000ff; /* Blue color */
             text-transform: uppercase;
             letter-spacing: 1px;
+            animation: blink-blue 1.5s infinite; /* Blinking blue */
+        }
+
+        .star-sign {
+            font-size: 18px;
+            color: #008000; /* Green color */
+            animation: blink-green 1.5s infinite; /* Blinking green */
         }
 
         /* National ID Visual Section */
@@ -134,8 +160,8 @@
             gap: 2px 10px;
         }
 
-        /* Biometric Fingerprint Area */
-        .fingerprint-area {
+        /* Uganda Map with Flag Colors and Fingerprint Inside - Updated */
+        .biometric-photo-area {
             grid-row: 1 / 6;
             width: 75px;
             height: 95px;
@@ -149,16 +175,33 @@
             overflow: hidden;
         }
         
-        .thumb-print {
-            width: 80%;
-            height: 80%;
-            /* Using a high-quality fingerprint SVG icon */
-            background-image: url('https://www.svgrepo.com/show/24430/fingerprint.svg');
+        /* Background Flag-Map Hybrid */
+        .map-flag-background {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag-map_of_Uganda.svg/1200px-Flag-map_of_Uganda.svg.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            opacity: 0.8;
-            filter: contrast(1.5);
+            opacity: 0.3; /* Subtle background */
+            z-index: 1;
+        }
+
+        /* Foreground Thumb Print */
+        .thumb-print-overlay {
+            width: 70%;
+            height: 70%;
+            /* Using a generic fingerprint icon as placeholder */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.svgrepo.com/show/24430/fingerprint.svg" viewBox="0 0 512 512"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM368.1 368.1c-13 13-34.1 13-47.1 0s-13-34.1 0-47.1c13-13 34.1-13 47.1 0s13 34.1 0 47.1zm-112.1-64.1c-13 13-34.1 13-47.1 0s-13-34.1 0-47.1c13-13 34.1-13 47.1 0s13 34.1 0 47.1z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            z-index: 2; /* On top of the map */
+            opacity: 0.9;
         }
 
         .id-field { margin-bottom: 2px; }
@@ -255,13 +298,18 @@
         </div>
     </div>
 
-    <div class="id-verified-title">NATIONAL ID VERIFIED</div>
+    <div class="id-verified-container">
+        <span class="star-sign">★</span>
+        <div class="id-verified-title">NATIONAL ID VERIFIED</div>
+        <span class="star-sign">★</span>
+    </div>
     
     <div class="id-card-visual">
         <div class="id-header-text">REPUBLIC OF UGANDA<br>NATIONAL ID CARD</div>
         <div class="id-body">
-            <div class="fingerprint-area">
-                <div class="thumb-print"></div>
+            <div class="biometric-photo-area">
+                <div class="map-flag-background"></div>
+                <div class="thumb-print-overlay"></div>
             </div>
 
             <div class="id-field" style="grid-column: 2 / 4;">
